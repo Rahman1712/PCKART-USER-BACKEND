@@ -24,12 +24,12 @@ website:
 cors:
   set:
     allowed:
-      # origins: ${CORS_ALLOWED_ORIGINS}
       origins: ${CORS_1:https://silver-maamoul-f3f282.netlify.app},
                ${CORS_2:https://golden-duckanoo-61524b.netlify.app},
                ${CORS_3:http://localhost:4200},
                ${CORS_4:http://localhost:4201},
-               ${CORS_5:http://localhost:4401}
+               ${CORS_5:http://localhost:4401},
+      # origins: ${CORS_ALLOWED_ORIGINS}
                
                
 filter:
