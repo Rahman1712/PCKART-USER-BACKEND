@@ -31,6 +31,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 	
 	@Value("${user.request.uri}")
 	private String USER_REQUEST_URI;
+	
+	@Value("${jwt.filter.disable.request.uris}")
+	private String[] JWT_FILTER_DISABLE_REQUEST_URIS;
 
 	@Override
 	protected void doFilterInternal(
@@ -43,6 +46,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 			filterChain.doFilter(request, response);
 			return;
 		}
+		
+
+		for(String uri: JWT_FILTER_DISABLE_REQUEST_URIS) {
+			String uriPath = uri.contains("/**") ? uri.replace("/**", "") 
+					: (uri.contains("/*") ? uri.replace("/*", "") : uri);
+			
+			System.err.println("URIPATH :: " + uriPath);
+			if(request.getRequestURI().startsWith(uriPath)){
+				System.err.println("USSSSSSSURIIIIIIIIIII FILTER KIN");
+				filterChain.doFilter(request, response);
+				return; 
+			}
+		}
+
+		System.err.println("URIPATH OUTSIDE in to jwt.............");
 		
 		final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 		final String jwt;

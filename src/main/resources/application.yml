@@ -12,7 +12,12 @@ jwt:
       message: ${JWT_MESSAGE_TOKEN}
       admin: ${JWT_ADMIN_TOKEN}
       products: ${JWT_PRODUCTS_TOKEN}
-
+  filter:
+    disable:
+      request:
+        uris: /users/api/v1/auth/**,
+              /users/api/v1/public/**,
+              /users/pckart/api/v1/user-to-admin/**
 
 #this for message sent , to add domain link
 website:
