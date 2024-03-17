@@ -1,0 +1,55 @@
+server:
+  port: 8080
+ 
+jwt:
+  secret:
+    key:
+      users:
+        access_token: ${JWT_USER_TOKEN}
+        expiration: 604800000 # for 7 days # for a day 86400000
+        refresh_token:
+          expiration: 1296000000 # for 15 days     
+      message: ${JWT_MESSAGE_TOKEN}
+      admin: ${JWT_ADMIN_TOKEN}
+      products: ${JWT_PRODUCTS_TOKEN}
+
+
+#this for message sent , to add domain link
+website:
+  domain:
+    url:
+      user: ${USER_DOMAIN_URL}
+
+      
+cors:
+  set:
+    allowed:
+      origins: ${CORS_ALLOWED_ORIGINS}
+               
+               
+filter:
+  url:
+    patterns: /pckart/api/v1/user-to-admin/user/*,
+              /pckart/api/v1/user-to-admin/coupon/*
+              /pckart/api/v1/user-to-admin/order/*
+              
+#this for return from user jwt authentication because it's from admin  
+user:
+  request:
+    uri: ${USER_REQUEST_URI:/users/pckart/api/v1/user-to-admin}
+
+
+product:
+  service:
+    api:
+      url:
+        get-quantity-byid: ${PRODUCT_APP_DOMAIN}/products/pckart/api/v1/products/get/quantity/
+        change-products-quantity: ${PRODUCT_APP_DOMAIN}/products/pckart/api/v1/products/auth/change-products-quantity
+
+  
+razorpay: 
+  api:
+    key: ${RAZORPAY_KEY}
+    key_secret: ${RAZORPAY_KEY_SECRET}
+    currency: ${RAZORPAY_CURRENCY}
+  

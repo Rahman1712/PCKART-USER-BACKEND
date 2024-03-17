@@ -1,0 +1,62 @@
+{"properties": [
+  {
+    "name": "cors.set.allowed.origins",
+    "type": "java.lang.String",
+    "description": "A description for 'cors.set.allowed.origins'"
+  },
+  {
+    "name": "jwt.secret.key.message",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret.key.message'"
+  },
+  {
+    "name": "website.url.user",
+    "type": "java.lang.String",
+    "description": "A description for 'website.url.user'"
+  },
+  {
+    "name": "website.domain.url.user",
+    "type": "java.lang.String",
+    "description": "A description for 'website.domain.url.user'"
+  },
+  {
+    "name": "website.domain.url.user",
+    "type": "java.lang.String",
+    "description": "A description for 'website.domain.url.user'"
+  },
+  {
+    "name": "jwt.secret.key.users.refresh_token.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret.key.users.refresh_token.expiration'"
+  },
+  {
+    "name": "jwt.secret.key.users.access_token",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret.key.users.access_token'"
+  },
+  {
+    "name": "jwt.secret.key.users.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret.key.users.expiration'"
+  },
+  {
+    "name": "filter.url.patterns",
+    "type": "java.lang.String",
+    "description": "A description for 'filter.url.patterns'"
+  },
+  {
+    "name": "user.request.uri",
+    "type": "java.lang.String",
+    "description": "A description for 'user.request.uri'"
+  },
+  {
+    "name": "jwt.secret.key.admin",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret.key.admin'"
+  },
+  {
+    "name": "product.service.api.url.get-quantity-byid",
+    "type": "java.lang.String",
+    "description": "A description for 'product.service.api.url.get-quantity-byid'"
+  }
+]}
