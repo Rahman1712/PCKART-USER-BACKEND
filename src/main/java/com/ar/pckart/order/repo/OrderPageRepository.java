@@ -66,7 +66,7 @@ public interface OrderPageRepository extends PagingAndSortingRepository<Order, S
             //"o.payment_status = 'PAID' "+
             //"AND "+
             "MONTH(o.orderDate) = MONTH(CURDATE()) "+
-            "GROUP BY DATE(o.orderDate), o.order_date "+  
+            "GROUP BY DATE(o.orderDate), o.orderDate "+  
             "ORDER BY DATE(o.orderDate)")
 	public Page<Object[]> getDayOrderAllDetails(Pageable pageable); // for a month by days
 
