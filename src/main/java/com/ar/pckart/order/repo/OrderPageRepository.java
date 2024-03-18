@@ -66,10 +66,10 @@ public interface OrderPageRepository extends PagingAndSortingRepository<Order, S
             //"o.payment_status = 'PAID' "+
             //"AND "+
             "MONTH(o.orderDate) = MONTH(CURDATE()) "+
-            "GROUP BY DATE(o.orderDate), COUNT(o.id) "+  
-            "ORDER BY DATE(o.orderDate), COUNT(o.id)")
+            "GROUP BY DATE(o.orderDate), o.order_date "+  
+            "ORDER BY DATE(o.orderDate)")
 	public Page<Object[]> getDayOrderAllDetails(Pageable pageable); // for a month by days
-	
+
 	@Query(value = "SELECT "+
 			"MONTHNAME(o.orderDate) AS month, "+
 			"COUNT(o.id) AS count, "+
