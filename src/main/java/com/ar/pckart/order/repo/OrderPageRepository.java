@@ -42,19 +42,7 @@ public interface OrderPageRepository extends PagingAndSortingRepository<Order, S
 			@Param("paymentStatusList") List<PaymentStatus> paymentStatusList,
 			@Param("paymentMethodList") List<PaymentMethod> paymentMethodList);
 
-	// @Query(value = "SELECT "+
-	// 		 "DATE(o.orderDate) AS date, "+
-	// 		 "COUNT(o.id) AS count, "+
-	// 		 "SUM(o.totalPricePaid) AS sum , "+
-	// 		 "SUM(op.productQuantity) as quantity "+
-	// 		 "FROM Order o "+ 
-	// 		 "JOIN o.products op "+
-  //           "WHERE "+
-  //           //"o.payment_status = 'PAID' "+
-	// 		 //"AND "+
-	// 		 "MONTH(o.orderDate) = MONTH(CURDATE()) "+
-	// 		 "GROUP BY DATE(o.orderDate) "+  
-	// 		 "ORDER BY DATE(o.orderDate)")
+
 	@Query(value = "SELECT "+
             "DATE(o.orderDate) AS date, "+
             "COUNT(o.id) AS count, "+
@@ -81,7 +69,7 @@ public interface OrderPageRepository extends PagingAndSortingRepository<Order, S
 			//"o.payment_status = 'PAID' "+
 			//"AND "+
 			"YEAR(o.orderDate) = YEAR(CURDATE()) "+
-			"GROUP BY MONTH(o.orderDate) "+  
+			"GROUP BY MONTH(o.orderDate), o.orderDate "+  
 			"ORDER BY MONTH(o.orderDate)")
 	public Page<Object[]> getMonthOrderAllDetails(Pageable pageable); // for a month by days
 	@Query(value = "SELECT "+
@@ -93,7 +81,7 @@ public interface OrderPageRepository extends PagingAndSortingRepository<Order, S
 			"JOIN o.products op "+
 			//"WHERE "+
 			//"o.payment_status = 'PAID' "+
-			"GROUP BY YEAR(o.orderDate) "+  
+			"GROUP BY YEAR(o.orderDate), o.orderDate "+  
 			"ORDER BY YEAR(o.orderDate)")
 	public Page<Object[]> getYearOrderAllDetails(Pageable pageable); // for a month by days
 
