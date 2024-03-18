@@ -101,15 +101,13 @@ public interface OrderRepository extends JpaRepository<Order, String>{
 	List<Object[]> getMostSellProducts();    
 	
 	@Query(value = "SELECT "+
-			   //"op.* " +
-			   "op.product_id as id,op.product_name as name,"+
-			   "sum(op.product_quantity) as quantity "+
-		       "FROM orders o " +
-		       "JOIN order_products op ON o.id = op.pl_fk "+
-		       //"WHERE o.id = op.pl_fk " +
-		       "GROUP BY op.product_id " +
-		       "ORDER BY (SELECT SUM(op.product_quantity)) DESC LIMIT :limit",
-		       nativeQuery = true)
+	"op.product_id as id, op.product_name as name, "+
+	"sum(op.product_quantity) as quantity "+
+	"FROM orders o " +
+	"JOIN order_products op ON o.id = op.pl_fk "+
+	"GROUP BY op.product_id, op.product_name " +
+	"ORDER BY sum(op.product_quantity) DESC LIMIT :limit",
+	nativeQuery = true)
 	List<Object[]> getMostOrderProductsQuantity(@Param("limit")Long limit); 
 	
 	
