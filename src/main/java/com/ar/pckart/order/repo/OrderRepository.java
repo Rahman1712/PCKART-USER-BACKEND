@@ -52,7 +52,7 @@ public interface OrderRepository extends JpaRepository<Order, String>{
              "payment_status = 'PAID' "+
 			 "AND "+
 			 "MONTH(order_date) = MONTH(CURDATE()) "+
-			 "GROUP BY DAY(order_date) "+   //"GROUP BY DAYNAME(order_date) "+
+			 "GROUP BY DAY(order_date), order_date "+   //"GROUP BY DAYNAME(order_date) "+
 			 "ORDER BY DAY(order_date)", nativeQuery = true)
 	List<Object[]> getDayOrderTotals(); // for a month by days
 	
@@ -62,7 +62,7 @@ public interface OrderRepository extends JpaRepository<Order, String>{
 			"payment_status = 'PAID' "+
 			"AND "+
 			"WEEK(order_date) = WEEK(CURDATE()) "+
-			"GROUP BY DAYNAME(order_date) "+
+			"GROUP BY DAYNAME(order_date), order_date "+
 			"ORDER BY DAY(order_date) ASC", nativeQuery = true)
 	List<Object[]> getWeekOrderTotals(); // for a week by day
 	
@@ -70,14 +70,14 @@ public interface OrderRepository extends JpaRepository<Order, String>{
 			"FROM orders "+ 
 			"WHERE payment_status = 'PAID' "+ 
 			"AND YEAR(order_date) = YEAR(CURDATE()) "+
-			"GROUP BY MONTH(order_date) "+
+			"GROUP BY MONTH(order_date), order_date "+
 			"ORDER BY MONTH(order_date)", nativeQuery = true)
 	List<Object[]> getMonthOrderTotals(); // for a year by months
 	
 	@Query(value = "SELECT YEAR(order_date) AS year, SUM(total_price_paid) AS sum "+
 			"FROM orders "+ 
 			"WHERE payment_status = 'PAID' "+
-			"GROUP BY YEAR(order_date) "+
+			"GROUP BY YEAR(order_date), order_date "+
 			"ORDER BY YEAR(order_date)", nativeQuery = true)
 	List<Object[]> getYearOrderTotals();  // for years
 	
@@ -128,7 +128,7 @@ public interface OrderRepository extends JpaRepository<Order, String>{
              //"o.payment_status = 'PAID' "+
 			 //"AND "+
 			 "MONTH(o.orderDate) = MONTH(CURDATE()) "+
-			 "GROUP BY DATE(o.orderDate) "+  
+			 "GROUP BY DATE(o.orderDate), o.orderDate "+  
 			 "ORDER BY DATE(o.orderDate)")
 	List<Object[]> getDayOrderAllDetails(); // for a month by days
 	
@@ -143,7 +143,7 @@ public interface OrderRepository extends JpaRepository<Order, String>{
 			//"o.payment_status = 'PAID' "+
 			//"AND "+
 			"YEAR(o.orderDate) = YEAR(CURDATE()) "+
-			"GROUP BY MONTH(o.orderDate) "+  
+			"GROUP BY MONTH(o.orderDate), o.orderDate "+  
 			"ORDER BY MONTH(o.orderDate)")
 	List<Object[]> getMonthOrderAllDetails(); // for monthly
 	
@@ -157,7 +157,7 @@ public interface OrderRepository extends JpaRepository<Order, String>{
 			//"WHERE "+
 			//"o.payment_status = 'PAID' "+
 			//"AND "+
-			"GROUP BY YEAR(o.orderDate) "+  
+			"GROUP BY YEAR(o.orderDate), o.orderDate "+  
 			"ORDER BY YEAR(o.orderDate)")
 	List<Object[]> getYearOrderAllDetails(); // for year wise
 }
